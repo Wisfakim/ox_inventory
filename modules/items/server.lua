@@ -159,6 +159,7 @@ CreateThread(function()
 						item.stack = not item.unique and true
 						item.description = item.description
 						item.weight = item.weight or 0
+						item.durability = item.durability or false
 						dump[k] = item
 						count += 1
 					end
@@ -178,6 +179,7 @@ CreateThread(function()
 		stack = %s,
 		close = %s,
 		description = %q,
+		durability = %s,
 		client = {
 			status = {
 				hunger = %s,
@@ -196,8 +198,7 @@ CreateThread(function()
 						fileSize += 1
 
 						---@todo cry
-						local itemStr = itemFormat:format(item.name, item.label, item.weight, item.stack, item.close, item.description or 'nil', item.hunger or 'nil', item.thirst or 'nil', item.stress or 'nil', item.image or 'nil')
-						-- temporary solution for nil values
+						local itemStr = itemFormat:format(item.name, item.label, item.weight, item.stack, item.close, item.description or 'nil',item.durability or false, item.hunger or 'nil', item.thirst or 'nil', item.stress or 'nil', item.image or 'nil')						-- temporary solution for nil values
 						itemStr = itemStr:gsub('[%s]-[%w]+ = "?nil"?,?', '')
 						-- temporary solution for empty status table
 						itemStr = itemStr:gsub('[%s]-[%w]+ = %{[%s]+%},?', '')
